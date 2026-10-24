@@ -1,23 +1,12 @@
+from datetime import date
 from models.prodotto import Prodotto
 
 class Assicurazione(Prodotto):
-    def __init__(self, id_prodotto: int, nome: str, descrizione: str,
-                 prezzo_giornaliero: float, copre_terzi: bool = True,
-                 immagine: str = "", is_disponibile: bool = True):
-        super().__init__(id_prodotto, nome, descrizione, prezzo_giornaliero, immagine, is_disponibile)
-        self._copre_terzi = copre_terzi
+    def __init__(self, id_prodotto: int, nome: str, descrizione: str, prezzo: float, immagine: str, is_disponibile: bool, data_inizio: date = None, data_fine: date = None):
+        super().__init__(id_prodotto, nome, descrizione, prezzo, immagine, is_disponibile)
+        self._data_inizio = data_inizio
+        self._data_fine = data_fine
 
-    @property
-    def copre_terzi(self) -> bool:
-        return self._copre_terzi
-
-    @copre_terzi.setter
-    def copre_terzi(self, valore: bool):
-        self._copre_terzi = bool(valore)
-
-    def calcola_prezzo(self) -> float:
-        # Prezzo base giornaliero dell'assicurazione
-        base = self._prezzo
-        if self._copre_terzi:
-            base *= 1.25  # Maggiorazione se copre anche i danni a terzi
-        return base
+    def set_periodo_copertura(self, data_inizio: date, data_fine: date) -> None:
+        self._data_inizio = data_inizio
+        self._data_fine = data_fine
