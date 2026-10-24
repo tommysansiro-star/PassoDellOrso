@@ -1,159 +1,115 @@
-from datetime import date
+from datetime import date, datetime, timedelta
 from models.enums import Difficolta, StatoApertura, FormulaTemporale, Livello, TipologiaAttrezzatura, StatoOrdine
-from models.metodo_pagamento import MetodoPagamento
-from models.cliente import Cliente
-from models.dipendente import Dipendente
-from models.skipass import Skipass
+from models.pista import Pista
+from models.skipass import SkiPass
 from models.attrezzatura import Attrezzatura
 from models.lezione import Lezione
 from models.assicurazione import Assicurazione
+from models.metodo_pagamento import MetodoPagamento
+from models.prodotto_carrello import ProdottoCarrello
 from models.prodotto_ordine import ProdottoOrdine
 from models.ordine import Ordine
-from models.pista import Pista
 
 
 def main():
     print("=" * 60)
-    print("      TEST DEL SISTEMA - PROGETTO PASSO DELL'ORSO")
+    print("TEST DEL SISTEMA - PASSO DELL'ORSO (AGGIORNATO)")
     print("=" * 60 + "\n")
 
-    # 1. Test Metodi di Pagamento e Utenti (Cliente e Dipendente)
-    pagamento_1 = MetodoPagamento(1, "4000-1234-5678-9010", "123", "12/28")
+    # 1. TEST PISTE
+    pista1 = Pista(id_pista=1, nome="Direttissima", difficolta=Difficolta.NERA, stato_apertura=StatoApertura.APERTA)
+    pista2 = Pista(id_pista=2, nome="Raccordo", difficolta=Difficolta.AZZURRA, stato_apertura=StatoApertura.CHIUSA)
 
-    cliente = Cliente(
-        id_utente=1,
-        nome="Mario",
-        cognome="Rossi",
-        email="mario.rossi@email.com",
-        password="password123",
-        numero_telefono="3331234567",
-        metodi_pagamento=[pagamento_1]
+    print("⛷️ GESTIONE PISTE:")
+    print(f" - {pista1.nome} | Difficoltà: {pista1.difficolta.name} | Stato: {pista1.stato_apertura.name}")
+    pista2.stato_apertura = StatoApertura.MANUTENZIONE
+    print(f" - {pista2.nome} | Difficoltà: {pista2.difficolta.name} | Stato aggiornato: {pista2.stato_apertura.name}\n")
+
+    # 2. TEST PRODOTTI
+    oggi = date.today()
+    settimana_prossima = oggi + timedelta(days=7)
+
+    # SkiPass
+    skipass = SkiPass(
+        id_prodotto=101, nome="SkiPass Settimanale", descrizione="Accesso 7 giorni",
+        prezzo=250.0, immagine="skipass.png", is_disponibile=True,
+        formula_temporale=FormulaTemporale.SETTIMANALE
     )
+    skipass.set_periodo_validita(oggi, settimana_prossima)
 
-    dipendente = Dipendente(
-        id_utente=2,
-        id_dipendente=101,
-        nome="Anna",
-        cognome="Verdi",
-        email="anna.verdi@passodellorso.it",
-        password="admin456",
-        numero_telefono="3339876543"
+    # Attrezzatura
+    sci = Attrezzatura(
+        id_prodotto=102, nome="Sci Salomon", descrizione="Sci carving",
+        prezzo=35.0, immagine="sci.png", is_disponibile=True,
+        brand="Salomon", data=oggi, livello=Livello.INTERMEDIO,
+        quantita=10, taglia="170", tipologia=TipologiaAttrezzatura.SCI
     )
+    sci.decrementa_quantita(2)  # Simuliamo il noleggio di 2 paia
 
-    print(f"👤 CLILENTE CREATO: {cliente.nome} {cliente.cognome}")
-    print(f"   - Ruolo: {cliente.get_ruolo()}")
-    print(f"   - Email: {cliente.email}")
-    print(f"   - Data Registrazione: {cliente.data_creazione}")
-    print(f"   - Metodi di pagamento salvati: {len(cliente.metodi_pagamento)}")
-
-    print(f"\n👩‍💼 DIPENDENTE CREATO: {dipendente.nome} {dipendente.cognome}")
-    print(f"   - Ruolo: {dipendente.get_ruolo()}")
-    print(f"   - ID Dipendente: {dipendente.id_dipendente}")
-    print("-" * 60)
-
-    # 2. Test dei Prodotti (Ereditarietà da Prodotto e calcolo prezzi)
-    skipass = Skipass(
-        id_prodotto=1,
-        nome="Skipass Settimanale",
-        descrizione="Accesso impianti per 7 giorni",
-        prezzo=40.0,
-        formula_temporale=FormulaTemporale.SETTIMANALE,
-        data_inizio=date(2026, 3, 1),
-        data_fine=date(2026, 3, 8)
-    )
-
-    attrezzatura = Attrezzatura(
-        id_prodotto=2,
-        nome="Set Sci Alpino",
-        descrizione="Sci, scarponi e bastoncini",
-        prezzo=25.0,
-        tipologia=TipologiaAttrezzatura.SCI,
-        brand="Salomon",
-        taglia="175",
-        livello=Livello.INTERMEDIO,
-        formula_temporale=FormulaTemporale.GIORNALIERO
-    )
-
+    # Lezione
     lezione = Lezione(
-        id_prodotto=3,
-        nome="Lezione Privata Sci",
-        descrizione="Lezione individuale con maestro esperto",
-        prezzo=50.0,
-        nome_maestro="Marco Maestri",
-        livello=Livello.PRINCIPIANTE,
-        numero_partecipanti=1
+        id_prodotto=103, nome="Lezione Privata", descrizione="Maestro Andrea",
+        prezzo=50.0, immagine="lezione.png", is_disponibile=True,
+        data=datetime.now(), livello=Livello.PRINCIPIANTE, quantita=5
     )
+    lezione.incrementa_quantita(1)  # Aggiungiamo un posto
 
+    # Assicurazione
     assicurazione = Assicurazione(
-        id_prodotto=4,
-        nome="Assicurazione Base",
-        descrizione="Copertura infortuni e responsabilità civile",
-        prezzo_giornaliero=5.0,
-        copre_terzi=True
+        id_prodotto=104, nome="Assicurazione Base", descrizione="Copertura infortuni",
+        prezzo=15.0, immagine="ass.png", is_disponibile=True
     )
+    assicurazione.set_periodo_copertura(oggi, settimana_prossima)
 
-    print("🎿 PRODOTTI DISPONIBILI:")
-    print(f" - {skipass.nome} | Prezzo calcolato: {skipass.calcola_prezzo()}€")
-    print(f" - {attrezzatura.nome} ({attrezzatura.brand}) | Prezzo calcolato: {attrezzatura.calcola_prezzo()}€")
-    print(f" - {lezione.nome} (Maestro: {lezione.nome_maestro}) | Prezzo calcolato: {lezione.calcola_prezzo()}€")
-    print(f" - {assicurazione.nome} | Prezzo calcolato: {assicurazione.calcola_prezzo()}€")
-    print("-" * 60)
+    print("📦 PRODOTTI CREATI E METODI TESTATI:")
+    print(f" - {skipass.nome}: Validità impostata da {skipass._data_inizio} a {skipass._data_fine}")
+    print(f" - {sci.nome}: Quantità in magazzino aggiornata a {sci.quantita}")
+    print(f" - {lezione.nome}: Posti disponibili aggiornati a {lezione.quantita}")
+    print(f" - {assicurazione.nome}: Copertura impostata da {assicurazione._data_inizio} a {assicurazione._data_fine}\n")
 
-    # 3. Test Ordini e Righe Ordine (ProdottoOrdine)
-    riga_1 = ProdottoOrdine(id_prodotto_ordine=1, prodotto=skipass, quantita=1)
-    riga_2 = ProdottoOrdine(id_prodotto_ordine=2, prodotto=attrezzatura, quantita=2)
-    riga_3 = ProdottoOrdine(id_prodotto_ordine=3, prodotto=assicurazione, quantita=1)
+    # 3. TEST METODO DI PAGAMENTO
+    carta_scaduta = oggi - timedelta(days=365)
+    pagamento = MetodoPagamento(
+        codice_carta="1234-5678-9012-3456", cvv="123",
+        data_scadenza=oggi + timedelta(days=700), nome="Mario Rossi"
+    )
+    print("💳 METODO DI PAGAMENTO:")
+    print(f" - Carta {pagamento.codice_carta} intestata a {pagamento._nome}")
+    print(f" - La carta è scaduta? {'Sì' if pagamento.is_scaduta() else 'No'}\n")
 
-    # Creazione dell'ordine associato al cliente e al metodo di pagamento
+    # 4. TEST CARRELLO
+    item_carrello1 = ProdottoCarrello(prodotto=skipass, quantita=2)
+    item_carrello2 = ProdottoCarrello(prodotto=sci, quantita=2)
+
+    print("🛒 TEST CARRELLO:")
+    print(
+        f" - {item_carrello1.quantita}x {item_carrello1.prodotto.nome} | Subtotale: {item_carrello1.calcola_subtotale()}€")
+    print(
+        f" - {item_carrello2.quantita}x {item_carrello2.prodotto.nome} | Subtotale: {item_carrello2.calcola_subtotale()}€\n")
+
+    # 5. TEST ORDINE
+    # Convertiamo gli elementi del carrello in righe d'ordine definitive
+    riga_ordine1 = ProdottoOrdine(prodotto=skipass, quantita=2)
+    riga_ordine2 = ProdottoOrdine(prodotto=sci, quantita=2)
+    riga_ordine3 = ProdottoOrdine(prodotto=assicurazione, quantita=2)
+
     ordine = Ordine(
-        id_ordine=501,
-        prodotti=[riga_1, riga_2, riga_3],
-        metodo_pagamento=pagamento_1,
-        stato=StatoOrdine.COMPLETATO
+        id_ordine=999,
+        metodo_pagamento=pagamento,
+        prezzo_totale=0.0,
+        prodotti=[riga_ordine1, riga_ordine2]
     )
 
-    # Aggiungiamo l'ordine allo storico del cliente
-    cliente.aggiungi_ordine(ordine)
+    # Test aggiunta prodotto all'ordine e ricalcolo totale
+    ordine.aggiungi_prodotto_ordine(riga_ordine3)
+    ordine.calcola_prezzo_totale()
+    ordine.stato = StatoOrdine.COMPLETATO
 
-    print(f"📦 ORDINE CREATO #{ordine.id_ordine}")
-    print(f"   - Cliente: {ordine.metodo_pagamento.codice_carta}")
-    print(f"   - Stato Attuale: {ordine.stato.value.upper()}")
-    print(f"   - Prezzo Totale: {ordine.prezzo_totale}€")
-    print("   - Dettaglio Articoli:")
-    for item in ordine.prodotti:
-        print(f"     * {item.prodotto.nome} (Q.tà: {item.quantita}) - Subtotale: {item.get_subtotale()}€")
-    print("-" * 60)
-
-    # 4. Test del flusso di Rimborso sull'ordine
-    print("🔄 TEST FLUSSO RIMBORSO:")
-    print(f"   Stato iniziale: {ordine.stato.value}")
-
-    ordine.richiedi_rimborso()
-    print(f"   -> Dopo richiesta: {ordine.stato.value}")
-
-    ordine.avvia_elaborazione_rimborso()
-    print(f"   -> In elaborazione: {ordine.stato.value}")
-
-    ordine.completa_rimborso()
-    print(f"   -> Stato finale: {ordine.stato.value}")
-    print("-" * 60)
-
-    # 5. Test Piste dell'Impianto
-    pista_1 = Pista(1, "Direttissima", Difficolta.NERA, StatoApertura.APERTA)
-    pista_2 = Pista(2, "Panorama", Difficolta.AZZURRA, StatoApertura.CHIUSA)
-
-    print("⛷️ STATO PISTE:")
-    print(
-        f" - Pista: {pista_1.nome} | Difficoltà: {pista_1.difficolta.value.upper()} | Stato: {pista_1.stato_apertura.value.upper()}")
-    print(
-        f" - Pista: {pista_2.nome} | Difficoltà: {pista_2.difficolta.value.upper()} | Stato: {pista_2.stato_apertura.value.upper()}")
-
-    # Test del setter sulla pista
-    pista_2.stato_apertura = StatoApertura.APERTA
-    print(f"   [Aggiornamento] La pista '{pista_2.nome}' adesso è: {pista_2.stato_apertura.value.upper()}")
-
-    print("\n" + "=" * 60)
-    print("      TUTTI I TEST ESEGUITI CON SUCCESSO!")
+    print("🧾 RIEPILOGO ORDINE FINALE:")
+    print(f" - {ordine.get_dettagli()}")
+    for po in ordine._prodotti:
+        print(f"   * {po.quantita}x {po.prodotto.nome}")
+    print(f" - Totale Calcolato: {ordine.calcola_prezzo_totale()}€")
     print("=" * 60)
 
 

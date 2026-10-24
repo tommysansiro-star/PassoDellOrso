@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d02c30-921b-4a4f-ada9-a23699daa781" name="Changes" comment="Aggiunta dei models di tutte le entità, esclusi i gestori. Non sono state controllati tutti i metodi e le funzionalità">
+    <list default="true" id="d6d02c30-921b-4a4f-ada9-a23699daa781" name="Changes" comment="Modifica degli ultimi models, ora tutti hanno gli stessi metodi del file EA, la parte di utente, cliente e dipendente ne ha qualcuno in più">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/assicurazione.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/assicurazione.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/attrezzatura.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/attrezzatura.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/lezione.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/lezione.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/metodo_pagamento.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/metodo_pagamento.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/prodotto.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/prodotto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/prodotto_carrello.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/prodotto_carrello.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/skipass.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/skipass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/ordine.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/ordine.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +98,15 @@
       <option name="project" value="LOCAL" />
       <updated>1792855730655</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Modifica degli ultimi models, ora tutti hanno gli stessi metodi del file EA, la parte di utente, cliente e dipendente ne ha qualcuno in più">
+      <option name="closed" value="true" />
+      <created>1792857740955</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1792857740955</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +114,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Aggiunta dei models di tutte le entità, esclusi i gestori. Non sono state controllati tutti i metodi e le funzionalità" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta dei models di tutte le entità, esclusi i gestori. Non sono state controllati tutti i metodi e le funzionalità" />
+    <MESSAGE value="Modifica degli ultimi models, ora tutti hanno gli stessi metodi del file EA, la parte di utente, cliente e dipendente ne ha qualcuno in più" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifica degli ultimi models, ora tutti hanno gli stessi metodi del file EA, la parte di utente, cliente e dipendente ne ha qualcuno in più" />
   </component>
 </project>
