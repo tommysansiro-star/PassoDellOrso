@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d02c30-921b-4a4f-ada9-a23699daa781" name="Changes" comment="Modifica degli ultimi models, ora tutti hanno gli stessi metodi del file EA, la parte di utente, cliente e dipendente ne ha qualcuno in più">
+    <list default="true" id="d6d02c30-921b-4a4f-ada9-a23699daa781" name="Changes" comment="Aggiunta dei models di tutte le entità, esclusi i gestori. Non sono state controllati tutti i metodi e le funzionalità">
+      <change afterPath="$PROJECT_DIR$/controllers/gestore_clienti.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/gestore_mail.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/gestore_ordini.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/gestore_piste.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/gestore_prodotti.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/gestore_utenti.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/ordine.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/ordine.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,22 +28,85 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "tommysansiro-star"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tommysansiro-star&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tommysansiro-star/PassoDellOrso.git",
-    "accountId": "0a96406d-3da1-4778-bda7-3e25ebe58e72"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tommysansiro-star/PassoDellOrso.git&quot;,
+    &quot;accountId&quot;: &quot;0a96406d-3da1-4778-bda7-3e25ebe58e72&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4,
-  "fromUser": false
-}]]></component>
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0583231169499345" />
+      <entry key="MS500" value="2.181035936517116" />
+      <entry key="S2" value="3.59269575644619" />
+      <entry key="S5" value="5.032305349610793" />
+      <entry key="S10" value="7.579849290304459" />
+      <entry key="S30" value="16.140981366344192" />
+      <entry key="S60" value="26.451828930668526" />
+      <entry key="M2" value="49.307302494941666" />
+      <entry key="M5" value="95.23749021873135" />
+      <entry key="M10" value="125.67222100907273" />
+      <entry key="M15" value="140.81051420060945" />
+      <entry key="M30" value="195.87372941697174" />
+      <entry key="H1" value="396.46628646593484" />
+      <entry key="H2" value="799.772446522738" />
+      <entry key="H4" value="1276.7422240524836" />
+      <entry key="D1" value="2050.177434663678" />
+      <entry key="W1" value="2247.4677040477345" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="7.014523059001452E-190" />
+      <entry key="S30" value="9.467043332692428E-64" />
+      <entry key="S60" value="3.7441236452584266E-32" />
+      <entry key="M2" value="2.6205970256523245E-16" />
+      <entry key="M5" value="1.0882773674190359E-6" />
+      <entry key="M10" value="0.00245179278266852" />
+      <entry key="M15" value="0.036715579784350964" />
+      <entry key="M30" value="0.672997616451979" />
+      <entry key="H1" value="3.4359983121196054" />
+      <entry key="H2" value="8.461220068729412" />
+      <entry key="H4" value="13.918626947645148" />
+      <entry key="D1" value="22.439301931093432" />
+      <entry key="W1" value="24.608595696320066" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.3064015349446496" />
+      <entry key="MS500" value="1.7693912941470538" />
+      <entry key="S2" value="3.412855566482757" />
+      <entry key="S5" value="4.9075800025337015" />
+      <entry key="S10" value="7.43143585203727" />
+      <entry key="S30" value="15.987651197826569" />
+      <entry key="S60" value="26.325580374916434" />
+      <entry key="M2" value="49.19203629653979" />
+      <entry key="M5" value="95.14394391325963" />
+      <entry key="M10" value="125.61062914757875" />
+      <entry key="M15" value="140.7986894731648" />
+      <entry key="M30" value="196.51306146530717" />
+      <entry key="H1" value="399.8705979183086" />
+      <entry key="H2" value="808.2039706720009" />
+      <entry key="H4" value="1290.6380483395874" />
+      <entry key="D1" value="2072.6107901117307" />
+      <entry key="W1" value="2272.075371482041" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3L6Jkl5mUvCd0QFeLzDnl62grlD" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -48,20 +115,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": "",
-    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\tommy\PycharmProjects\PassoDellOrso\models" />
@@ -81,6 +155,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1792768728813</updated>
+      <workItem from="1792922384205" duration="7894000" />
+      <workItem from="1793008827751" duration="7788000" />
+      <workItem from="1793023558535" duration="2511000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunta dei models di tutte le entità, esclusi i gestori. Non sono state controllati tutti i metodi e le funzionalità">
       <option name="closed" value="true" />
@@ -98,15 +175,7 @@
       <option name="project" value="LOCAL" />
       <updated>1792855730655</updated>
     </task>
-    <task id="LOCAL-00003" summary="Modifica degli ultimi models, ora tutti hanno gli stessi metodi del file EA, la parte di utente, cliente e dipendente ne ha qualcuno in più">
-      <option name="closed" value="true" />
-      <created>1792857740955</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1792857740955</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,7 +183,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Aggiunta dei models di tutte le entità, esclusi i gestori. Non sono state controllati tutti i metodi e le funzionalità" />
-    <MESSAGE value="Modifica degli ultimi models, ora tutti hanno gli stessi metodi del file EA, la parte di utente, cliente e dipendente ne ha qualcuno in più" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifica degli ultimi models, ora tutti hanno gli stessi metodi del file EA, la parte di utente, cliente e dipendente ne ha qualcuno in più" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta dei models di tutte le entità, esclusi i gestori. Non sono state controllati tutti i metodi e le funzionalità" />
   </component>
 </project>
