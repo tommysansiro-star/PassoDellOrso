@@ -18,6 +18,10 @@ class Ordine:
         return self._id_ordine
 
     @property
+    def prezzo_totale(self) -> float:
+        return self._prezzo_totale
+
+    @property
     def stato(self) -> StatoOrdine:
         return self._stato
 

@@ -13,13 +13,13 @@ class GestoreUtenti:
 
         self.utente_corrente = None
 
-        self._carica-dati()
+        self._carica_dati()
 
     def getUtenteByMail(self, email:str ):
         for utente in self._utenti:
             if utente.email == email:
                 return utente
-            return None
+        return None
 
     def validaPassword(self, password: str) -> bool:
         return len(password) >= 8
@@ -50,7 +50,7 @@ class GestoreUtenti:
         if not self.validaPassword(password):
             raise ValueError("La password non rispetta i requisiti di sicurezza.")
 
-        nuovo_id = 1 if not self._utenti else max(u.id for u in self._utenti) + 1
+        nuovo_id = 1 if not self._utenti else max(u.id_utente for u in self._utenti) + 1
 
         nuovo_cliente = Cliente(nuovo_id, nome, cognome, email, password, telefono)
         self._utenti.append(nuovo_cliente)
@@ -65,9 +65,12 @@ class GestoreUtenti:
         if not self.validaPassword(password):
             raise ValueError("La password non rispetta i requisiti di sicurezza.")
 
-        nuovo_id = 1 if not self._utenti else max(u.id for u in self._utenti) + 1
+        nuovo_id_utente = 1 if not self._utenti else max(u.id_utente for u in self._utenti) + 1
 
-        nuovo_dipendente = Dipendente(nuovo_id, nome, cognome, email, password, telefono)
+        dipendenti = [u for u in self._utenti if isinstance(u, Dipendente)]
+        nuovo_id_dipendente = 1 if not dipendenti else max(d.id_dipendente for d in dipendenti) + 1
+
+        nuovo_dipendente = Dipendente(nuovo_id_utente, nuovo_id_dipendente, nome, cognome, email, password, telefono)
         self._utenti.append(nuovo_dipendente)
         self._salva_dati()
         self._gestore_mail.inviaEmailBenvenuto(email, nome)
@@ -77,7 +80,7 @@ class GestoreUtenti:
     def rimuoviUtente(self, id_utente: int) -> bool:
         """Elimina un Utente (Cliente o Dipendente) tramite ID."""
         for utente in self._utenti:
-            if utente.id == id_utente:
+            if utente.id_utente == id_utente:
                 self._utenti.remove(utente)
                 self._salva_dati()
                 return True
@@ -116,7 +119,6 @@ class GestoreUtenti:
         if utente and self.validaPassword(nuova_password):
             utente.password = nuova_password
             self._salva_dati()
-            # Assicurati che GestoreMail riceva i parametri attesi
             self._gestore_mail.inviaEmailModificaCredenziali(email)
 
     def _salva_dati(self):

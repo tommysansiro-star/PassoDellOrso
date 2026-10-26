@@ -20,7 +20,7 @@ class GestorePiste:
     def getPistaById(self, id_pista: int):
         """Restituisce un oggetto Pista specifico ricercato per ID."""
         for pista in self._piste:
-            if getattr(pista, 'id', None) == id_pista:
+            if getattr(pista, 'id_pista', None) == id_pista:
                 return pista
         return None
 
@@ -29,7 +29,7 @@ class GestorePiste:
         Filtra le piste in base al livello (es. PRINCIPIANTE, AVANZATO).
         Il parametro 'difficolta' dovrebbe essere un valore dell'Enum Difficoltà.
         """
-        return [p for p in self._piste if getattr(p, 'difficolta', None) == difficolta]
+        return [p for p in self._piste if p.difficolta == difficolta]
 
     def modificaStatoPista(self, id_pista: int, nuovo_stato) -> bool:
         """
@@ -38,7 +38,7 @@ class GestorePiste:
         """
         pista = self.getPistaById(id_pista)
         if pista:
-            pista.stato = nuovo_stato
+            pista.stato_apertura = nuovo_stato
             self._salva_dati()
             return True
         return False
@@ -46,8 +46,8 @@ class GestorePiste:
     def inserisciNuovaPista(self, pista) -> None:
         """Aggiunge una nuova pista all'impianto (lato Dipendente)."""
         if getattr(pista, 'id', None) is None:
-            nuovo_id = 1 if not self._piste else max(p.id for p in self._piste) + 1
-            pista.id = nuovo_id
+            nuovo_id = 1 if not self._piste else max(p.id_pista for p in self._piste) + 1
+            pista.id_pista = nuovo_id
 
         self._piste.append(pista)
         self._salva_dati()

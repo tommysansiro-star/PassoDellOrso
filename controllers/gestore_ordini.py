@@ -17,7 +17,7 @@ class GestoreOrdini:
         self._file_path = "data/ordini.pickle"
         self._carica_dati()
 
-    def MetodoPagamentoValdio(self, metodo_pagamento) -> bool:
+    def MetodoPagamentoValido(self, metodo_pagamento) -> bool:
         """Verifica la validità della carta"""
         return True
 
@@ -35,29 +35,33 @@ class GestoreOrdini:
         if not carrello:
             raise ValueError("Il carrello è vuoto.")
 
-        if not self.MetodoPagamentoValdio(metodo_pagamento):
-            raise valueError("Metodo di pagamento non valido o rifiutato.")
+        if not self.MetodoPagamentoValido(metodo_pagamento):
+            raise ValueError("Metodo di pagamento non valido o rifiutato.")
 
-        nuovo_id = 1 if not self._ordini else max(o.id for o in self._ordini) + 1
+        nuovo_id = 1 if not self._ordini else max(o.id_ordine for o in self._ordini) + 1
 
         self.validaDati(carrello)
 
+        prezzo_totale = sum(item.prodotto.prezzo * item.quantita for item in carrello)
+
         for item in carrello:
-            prodotto_catalogo = self._gestore_prodotti.getProdottoById(item.prodotto.id)
+            prodotto_catalogo = self._gestore_prodotti.getProdottoById(item.prodotto.id_prodotto)
             if prodotto_catalogo:
                 if hasattr(prodotto_catalogo, 'quantita'):
                     if prodotto_catalogo.quantita >= item.quantita:
                         prodotto_catalogo.quantita -= item.quantita
                         if prodotto_catalogo.quantita == 0:
-                            prodotto_catalogo.isDisponibile = False
+                            prodotto_catalogo.is_disponibile = False
                     else:
-                        raise ValueError("Prodotto {prodott_catalogo.nome} esaurito prima del checkout.")
+                        raise ValueError(f"Prodotto {prodotto_catalogo.nome} esaurito prima del checkout.")
 
         self._gestore_prodotti._salva_dati()
 
         prodotti_ordine = [ProdottoOrdine(item.prodotto, item.quantita) for item in carrello]
-        nuovo_ordine = Oridne(nuovo_id, cliente.id, prodotti_ordine, datetime.now(), StatoOrdine.COMPLETATO)
+        nuovo_ordine = Ordine(nuovo_id, metodo_pagamento, prezzo_totale, prodotti_ordine)
         self.aggiungiOrdine(nuovo_ordine)
+
+        cliente.aggiungi_ordine(nuovo_ordine)
 
         self._gestore_mail.inviaMailConferma(cliente.email, nuovo_ordine)
 
@@ -71,16 +75,17 @@ class GestoreOrdini:
     def visualizzaOrdine(self, id_ordine: int):
         """Restituisce l'ordine specifico per i dettagli."""
         for ordine in self._ordini:
-            if ordine.id == id_ordine:
+            if ordine.id_ordine == id_ordine:
                 return ordine
         return None
 
     def getOrdiniCliente(self, cliente) -> list:
         """Restituisce lo storico degli ordini di un determinato cliente."""
-        return [o for o in self._ordini if o.id == cliente.id]
+        return cliente.ordini
 
     def richiediInformazioniOrdine(self, id_oridne: int) -> None:
         """Logica per richiedere info al supporto o tracciamento."""
+        pass
 
     def richiediModifica(self, id_ordine: int) -> None:
         """Verifica se l'ordine è in uno stato modificabile."""
@@ -92,9 +97,9 @@ class GestoreOrdini:
         """Applica le modifiche ai prodotti dell'ordine e salva."""
         ordine = self.visualizzaOrdine(id_ordine)
         if ordine:
-            ordine.prodotti = prodotti_ordine
+            ordine.set_prodotti(prodotti_ordine)
+            ordine.calcola_prezzo_totale()
             self._salva_dati()
-            self._gestore_mail.inviaEmailModificaOrdine(email_cliente, oridne)
 
     def richiediRimborso(self, id_ordine: int, motivazione: str) -> bool:
         """Scatena la transizione di stato da Completato a Rimborso Richiesto."""
@@ -104,7 +109,7 @@ class GestoreOrdini:
             #ordine.note = motivazione
             self._salva_dati()
             return True
-        return false
+        return False
 
     def gestisciRimborso(self, id_ordine: int, approvato: bool) -> None:
         """Scatena la transizione finale del rimborso"""

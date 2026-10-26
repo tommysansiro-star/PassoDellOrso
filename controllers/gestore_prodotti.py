@@ -50,14 +50,14 @@ class GestoreProdotti:
 
     def aggiungiProdotto(self, cliente, prodotto, quantita_richiesta: int) -> None:
         """Aggiunge un prodotto con la relativa quantità al carrello del cliente."""
-        if quantita <= 0:
-            raise ValueError("La quantità defe essere maggiore di zero.")
+        if quantita_richiesta <= 0:
+            raise ValueError("La quantità deve essere maggiore di zero.")
 
         if not getattr(prodotto, 'is_disponibile', True):
             raise ValueError("Il prodotto selezionato non è attualmente disponibile.")
 
         if hasattr(prodotto, 'quantita') and prodotto.quantita < quantita_richiesta:
-            raise ValueError("Quantità richiesta non disponibile. Scorta attuale: {prodotto.quantita}")
+            raise ValueError(f"Quantità richiesta non disponibile. Scorta attuale: {prodotto.quantita}")
 
         for item in cliente.prodotti_carrello:
             if item.prodotto.id == prodotto.id:
