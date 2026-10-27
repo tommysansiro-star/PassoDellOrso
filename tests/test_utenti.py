@@ -7,12 +7,10 @@ from models.cliente import Cliente
 from models.dipendente import Dipendente
 
 
-class TestUtenti(unittest.TestCase):
+class UnitTestUtenti(unittest.TestCase):
     def setUp(self):
         self.mock_mail = MagicMock()
-
         self.gestore = GestoreUtenti(self.mock_mail)
-
         self.gestore._file_path = "data/test_utenti.pickle"
         self.gestore._utenti = []
         self.gestore.utente_corrente = None
@@ -31,7 +29,6 @@ class TestUtenti(unittest.TestCase):
 
     def test_registra_cliente_email_duplicata(self):
         self.gestore.registraCliente("Mario", "Rossi", "mario@email.com", "password123", "3331234567")
-
         with self.assertRaises(ValueError):
             self.gestore.registraCliente("Luigi", "Verdi", "mario@email.com", "passsicura89", "3330000000")
 
@@ -41,20 +38,16 @@ class TestUtenti(unittest.TestCase):
 
     def test_richiesta_accesso_e_logout(self):
         self.gestore.registraCliente("Mario", "Rossi", "mario@email.com", "password123", "3331234567")
-
         utente_loggato = self.gestore.richiestaAccesso("mario@email.com", "password123")
         self.assertIsNotNone(utente_loggato)
         self.assertEqual(self.gestore.utente_corrente, utente_loggato)
-
         utente_fallito = self.gestore.richiestaAccesso("mario@email.com", "sbagliata")
         self.assertIsNone(utente_fallito)
-
         self.gestore.effettuaLogout()
         self.assertIsNone(self.gestore.utente_corrente)
 
     def test_aggiungi_metodo_pagamento_dipendente_rifiutato(self):
         dipendente = self.gestore.registraDipendente("Anna", "Neri", "anna@admin.com", "adminpass1", "3339999999")
-
         with self.assertRaises(TypeError):
             self.gestore.aggiungiNuovoMetodoPagamento(dipendente, "CartaFinta")
 
