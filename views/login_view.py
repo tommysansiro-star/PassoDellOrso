@@ -150,24 +150,45 @@ class LoginView(QWidget):
         if not email or not password:
             QMessageBox.warning(self, "Attenzione", "Inserisci sia email che password.")
             return
-        utente_loggato = self.gestore_utenti.richiestaAccesso(email, password)
+
+        # Tentativo di autenticazione tramite il gestore utenti
+        try:
+            utente_loggato = self.gestore_utenti.richiestaAccesso(email, password)
+        except Exception as e:
+            QMessageBox.critical(self, "Errore", f"Errore durante il login:\n{str(e)}")
+            return
 
         if utente_loggato:
+            # 1. Prima cambiamo pagina (così la dashboard si aggiorna subito)
+            if not self.main_window:
+                QMessageBox.critical(self, "Errore", "Finestra principale (main_window) non collegata alla vista di login!")
+                return
+
+            try:
+                from models.dipendente import Dipendente
+                is_dipendente = isinstance(utente_loggato, Dipendente)
+            except ImportError:
+                is_dipendente = False
+
+            try:
+                if is_dipendente and hasattr(self.main_window, 'mostra_area_dipendente'):
+                    self.main_window.mostra_area_dipendente()
+                elif hasattr(self.main_window, 'mostra_area_cliente'):
+                    self.main_window.mostra_area_cliente()
+                else:
+                    QMessageBox.warning(self, "Attenzione", "Metodo di navigazione non trovato nella finestra principale.")
+                    return
+            except Exception as e:
+                import traceback
+                traceback.print_exc()
+                QMessageBox.critical(self, "Errore Fatale", f"Crash intercettato nel cambio pagina:\n{str(e)}")
+                return
+
+            # 2. Poi mostriamo il popup di benvenuto (così non blocca il cambio pagina)
             QMessageBox.information(self, "Accesso Consentito", f"Benvenuto {utente_loggato.nome}!")
 
-            # BLOCCO TRY-EXCEPT PER EVITARE IL CRASH
-            try:
-                if isinstance(utente_loggato, Dipendente):
-                    self.main_window.mostra_area_dipendente()
-                else:
-                    # Poiché non hai ancora creato l'Area Cliente, blocchiamo temporaneamente questo redirect
-                    QMessageBox.information(self, "WIP", "L'area cliente non è ancora stata creata.")
-            except Exception as e:
-                # Se c'è un errore nel caricamento della pagina, lo stampiamo a schermo!
-                QMessageBox.critical(self, "Errore Fatale", f"Crash intercettato:\n{str(e)}")
-                print(f"ERRORE: {e}")
         else:
-            QMessageBox.critical(self, "Errore", "Credenziali errate.")
+            QMessageBox.critical(self, "Errore", "Credenziali errate o utente non registrato.")
             self.input_password.clear()
 
     def vai_a_registrazione(self):
