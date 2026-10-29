@@ -74,13 +74,11 @@ class DipendenteDashboardView(QWidget):
         self.btn_ordini = QPushButton("Gestione Ordini")
         self.btn_piste = QPushButton("Gestione Piste")
         self.btn_inventario = QPushButton("Inventario")
-        self.btn_utenti = QPushButton("Utenti")
         self.btn_nuovo_dip = QPushButton("Nuovo Dipendente")
         self.btn_logout = QPushButton("Logout")
 
         # Assegnazione classi per il CSS
-        bottoni = [self.btn_ordini, self.btn_piste, self.btn_inventario,
-                   self.btn_utenti, self.btn_nuovo_dip, self.btn_logout]
+        bottoni = [self.btn_ordini, self.btn_piste, self.btn_inventario, self.btn_nuovo_dip, self.btn_logout]
         for btn in bottoni:
             btn.setCursor(Qt.CursorShape.PointingHandCursor)
             self.sidebar_layout.addWidget(btn)
@@ -135,7 +133,6 @@ class DipendenteDashboardView(QWidget):
         self.w_piste_layout.addWidget(testo_piste)
         self.w_piste_layout.addWidget(self.btn_vedi_piste, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        # Aggiunta dei widget all'area contenuti
         self.content_layout.addWidget(self.widget_ordini)
         self.content_layout.addWidget(self.widget_piste)
         self.content_layout.addStretch()
@@ -212,12 +209,13 @@ class DipendenteDashboardView(QWidget):
                 self.main_window.mostra_login()
 
     def vai_a_nuovo_dipendente(self):
-        QMessageBox.information(self, "Navigazione", "Apertura form Creazione Dipendente...")
-        # TODO: self.main_window.mostra_creazione_dipendente()
+        if self.main_window:
+            self.main_window.mostra_inserimento_dipendente()
 
     def vai_a_ordini(self):
         if self.main_window:
             self.main_window.mostra_gestione_ordini()
 
     def vai_a_piste(self):
-        QMessageBox.information(self, "Navigazione", "Apertura Tabella Gestione Piste...")
+        if self.main_window:
+            self.main_window.mostra_area_gestione_piste()
