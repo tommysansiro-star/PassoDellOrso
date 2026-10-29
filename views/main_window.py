@@ -3,8 +3,6 @@ from views.login_view import LoginView
 from views.registrazione_view import RegistrazioneView
 from views.dipendente_dashboard_view import DipendenteDashboardView
 from views.ordini_dipendente_view import OrdiniDipendenteView
-from views.gestione_piste_view import GestionePisteView
-from views.inserimento_dipendente_view import InserimentoDipendenteView
 
 class MainWindow(QMainWindow):
     def __init__(self, gestore_utenti, gestore_ordini, gestore_prodotti, gestore_piste):
@@ -32,17 +30,13 @@ class MainWindow(QMainWindow):
         self.login_view = LoginView(self.gestore_utenti, main_window=self)
         self.registrazione_view = RegistrazioneView(self.gestore_utenti, main_window=self)
         self.dipendente_dashboard_view = DipendenteDashboardView(self.gestore_utenti, self.gestore_ordini, self.gestore_piste, main_window=self)
-        self.ordini_dipendente_view = OrdiniDipendenteView(self.gestore_ordini, self.gestore_utenti, main_window=self)
-        self.gestione_piste_view = GestionePisteView(self.gestore_piste, main_window=self)
-        self.inserimento_dipendente_view = InserimentoDipendenteView(self.gestore_utenti, main_window=self)
+        self.ordini_dipendente_view = OrdiniDipendenteView(self.gestore_ordini, main_window=self)
 
         # Aggiungiamo le view al QStackedWidget
         self.stacked_widget.addWidget(self.login_view)  # Indice 0
         self.stacked_widget.addWidget(self.registrazione_view)  # Indice 1
         self.stacked_widget.addWidget(self.dipendente_dashboard_view)
         self.stacked_widget.addWidget(self.ordini_dipendente_view)
-        self.stacked_widget.addWidget(self.gestione_piste_view)
-        self.stacked_widget.addWidget(self.inserimento_dipendente_view)
 
         # Impostiamo la schermata iniziale da mostrare all'avvio
         self.mostra_login()
@@ -66,10 +60,3 @@ class MainWindow(QMainWindow):
     def mostra_gestione_ordini(self):
         self.ordini_dipendente_view.aggiorna_vista()
         self.stacked_widget.setCurrentWidget(self.ordini_dipendente_view)
-
-    def mostra_area_gestione_piste(self):
-        self.gestione_piste_view.aggiorna_vista()
-        self.stacked_widget.setCurrentWidget(self.gestione_piste_view)
-
-    def mostra_inserimento_dipendente(self):
-        self.stacked_widget.setCurrentWidget(self.inserimento_dipendente_view)

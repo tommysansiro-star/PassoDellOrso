@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d02c30-921b-4a4f-ada9-a23699daa781" name="Changes" comment="realizzazione view dashboard dipendente e visualizzazione ordini">
-      <change afterPath="$PROJECT_DIR$/views/gestione_piste_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/inserimento_dipendente_view.py" afterDir="false" />
+    <list default="true" id="d6d02c30-921b-4a4f-ada9-a23699daa781" name="Changes" comment="realizzazione interfacce login e registrazione">
+      <change afterPath="$PROJECT_DIR$/views/dipendente_dashboard_view.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/ordini_dipendente_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dipendente_dashboard_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/dipendente_dashboard_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/login_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/login_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/main_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordini_dipendente_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordini_dipendente_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/registrazione_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/registrazione_view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,61 +47,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.9037111624262868" />
-      <entry key="MS500" value="2.6479617325821154" />
-      <entry key="S2" value="2.9705275820248653" />
-      <entry key="S5" value="3.895034137169813" />
-      <entry key="S10" value="5.9960871072205375" />
-      <entry key="S30" value="10.754927057285162" />
-      <entry key="S60" value="13.990307472879625" />
-      <entry key="M2" value="19.16111281978916" />
-      <entry key="M5" value="29.054343265881936" />
-      <entry key="M10" value="41.393143551088336" />
-      <entry key="M15" value="53.86401494102411" />
-      <entry key="M30" value="91.55708670156882" />
-      <entry key="H1" value="174.47653058299963" />
-      <entry key="H2" value="369.64863239766055" />
-      <entry key="H4" value="808.740765838998" />
-      <entry key="D1" value="2513.998466183844" />
-      <entry key="W1" value="3220.3386142396776" />
+      <entry key="MS100" value="1.7071067811930618" />
+      <entry key="MS500" value="1.9399953303421298" />
+      <entry key="S2" value="2.600110999732429" />
+      <entry key="S5" value="4.479258470484381" />
+      <entry key="S10" value="6.722672283614815" />
+      <entry key="S30" value="11.502252358147043" />
+      <entry key="S60" value="16.523756951201552" />
+      <entry key="M2" value="22.76958463211076" />
+      <entry key="M5" value="29.967629688233227" />
+      <entry key="M10" value="35.039676981619785" />
+      <entry key="M15" value="41.436012566180864" />
+      <entry key="M30" value="73.2278924822184" />
+      <entry key="H1" value="160.80027435503223" />
+      <entry key="H2" value="368.16743882612553" />
+      <entry key="H4" value="820.4093095290739" />
+      <entry key="D1" value="2460.7157067116505" />
+      <entry key="W1" value="3111.6545731852925" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="3.534489493881967E-146" />
-      <entry key="S2" value="4.336038363316048E-37" />
-      <entry key="S5" value="2.8919080183716996E-15" />
-      <entry key="S10" value="5.98645063876983E-8" />
-      <entry key="S30" value="0.005687468034588322" />
-      <entry key="S60" value="0.11529079140351126" />
-      <entry key="M2" value="0.6021820717379169" />
-      <entry key="M5" value="1.8513420893495274" />
-      <entry key="M10" value="3.118883185995512" />
-      <entry key="M15" value="4.114326569022387" />
-      <entry key="M30" value="6.947522199900093" />
-      <entry key="H1" value="12.76414965720827" />
-      <entry key="H2" value="21.654792365031025" />
-      <entry key="H4" value="32.600142702335" />
-      <entry key="D1" value="58.84926737288031" />
-      <entry key="W1" value="68.18261319743617" />
+      <entry key="MS100" value="1.383476366589376E-274" />
+      <entry key="MS500" value="1.6911975816157407E-55" />
+      <entry key="S2" value="2.027909581724261E-14" />
+      <entry key="S5" value="3.3328827209721684E-6" />
+      <entry key="S10" value="0.0018277574284100968" />
+      <entry key="S30" value="0.13510545115492734" />
+      <entry key="S60" value="0.46311864927553875" />
+      <entry key="M2" value="0.9281970116799417" />
+      <entry key="M5" value="1.4608770486834641" />
+      <entry key="M10" value="1.8686866530491468" />
+      <entry key="M15" value="2.5534722887740973" />
+      <entry key="M30" value="5.863106812958708" />
+      <entry key="H1" value="12.101952488460602" />
+      <entry key="H2" value="20.08315751693436" />
+      <entry key="H4" value="29.476935268122148" />
+      <entry key="D1" value="52.330388546733865" />
+      <entry key="W1" value="60.428086080808455" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9848341997736693" />
-      <entry key="MS500" value="1.7454366319282213" />
-      <entry key="S2" value="2.486945749702348" />
-      <entry key="S5" value="3.5963852128870504" />
-      <entry key="S10" value="5.747638701656473" />
-      <entry key="S30" value="10.609021001513792" />
-      <entry key="S60" value="14.00313344014461" />
-      <entry key="M2" value="19.685932095595252" />
-      <entry key="M5" value="30.85418981341664" />
-      <entry key="M10" value="44.47533467895488" />
-      <entry key="M15" value="57.946898436764364" />
-      <entry key="M30" value="98.4773445486435" />
-      <entry key="H1" value="187.2135626399076" />
-      <entry key="H2" value="391.2763955088396" />
-      <entry key="H4" value="841.3157984939614" />
-      <entry key="D1" value="2572.837569993575" />
-      <entry key="W1" value="3288.519448006332" />
+      <entry key="MS100" value="0.806641763328365" />
+      <entry key="MS500" value="0.9831979385178397" />
+      <entry key="S2" value="1.8155288737709316" />
+      <entry key="S5" value="3.8419278307107803" />
+      <entry key="S10" value="6.248706467875966" />
+      <entry key="S30" value="11.388764923621528" />
+      <entry key="S60" value="16.814038451463194" />
+      <entry key="M2" value="23.578598010287706" />
+      <entry key="M5" value="31.36569415140855" />
+      <entry key="M10" value="36.87185420846584" />
+      <entry key="M15" value="43.96030552117183" />
+      <entry key="M30" value="79.06381983707243" />
+      <entry key="H1" value="172.87374814489473" />
+      <entry key="H2" value="388.22277435587137" />
+      <entry key="H4" value="849.8610604854919" />
+      <entry key="D1" value="2513.03632708582" />
+      <entry key="W1" value="3172.0809682308814" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -386,7 +385,7 @@
       <workItem from="1793134643084" duration="415000" />
       <workItem from="1793202835956" duration="7542000" />
       <workItem from="1793285433555" duration="193000" />
-      <workItem from="1793285728677" duration="7914000" />
+      <workItem from="1793285728677" duration="3928000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunta dei models di tutte le entità, esclusi i gestori. Non sono state controllati tutti i metodi e le funzionalità">
       <option name="closed" value="true" />
@@ -444,15 +443,7 @@
       <option name="project" value="LOCAL" />
       <updated>1793285470595</updated>
     </task>
-    <task id="LOCAL-00008" summary="realizzazione view dashboard dipendente e visualizzazione ordini">
-      <option name="closed" value="true" />
-      <created>1793291166638</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1793291166638</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,12 +456,11 @@
     <MESSAGE value="correzioni varie" />
     <MESSAGE value="implementazione parziale main e view di login" />
     <MESSAGE value="realizzazione interfacce login e registrazione" />
-    <MESSAGE value="realizzazione view dashboard dipendente e visualizzazione ordini" />
-    <option name="LAST_COMMIT_MESSAGE" value="realizzazione view dashboard dipendente e visualizzazione ordini" />
+    <option name="LAST_COMMIT_MESSAGE" value="realizzazione interfacce login e registrazione" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PassoDellOrso$test_piste.coverage" NAME="test_piste Coverage Results" MODIFIED="1793066580012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/PassoDellOrso$main.coverage" NAME="main Coverage Results" MODIFIED="1793294422837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PassoDellOrso$main.coverage" NAME="main Coverage Results" MODIFIED="1793290906384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PassoDellOrso$test_ordini.coverage" NAME="test_ordini Coverage Results" MODIFIED="1793066572872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/PassoDellOrso$view.coverage" NAME="view Coverage Results" MODIFIED="1793118230178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/views" />
     <SUITE FILE_PATH="coverage/PassoDellOrso$test_prodotti.coverage" NAME="test_prodotti Coverage Results" MODIFIED="1793066567662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />

@@ -153,10 +153,19 @@ class LoginView(QWidget):
         utente_loggato = self.gestore_utenti.richiestaAccesso(email, password)
 
         if utente_loggato:
-            if isinstance(utente_loggato, Dipendente):
-                self.main_window.mostra_area_dipendente()
-            else:
-                QMessageBox.information(self, "WIP", "L'area cliente non è ancora stata creata.")
+            QMessageBox.information(self, "Accesso Consentito", f"Benvenuto {utente_loggato.nome}!")
+
+            # BLOCCO TRY-EXCEPT PER EVITARE IL CRASH
+            try:
+                if isinstance(utente_loggato, Dipendente):
+                    self.main_window.mostra_area_dipendente()
+                else:
+                    # Poiché non hai ancora creato l'Area Cliente, blocchiamo temporaneamente questo redirect
+                    QMessageBox.information(self, "WIP", "L'area cliente non è ancora stata creata.")
+            except Exception as e:
+                # Se c'è un errore nel caricamento della pagina, lo stampiamo a schermo!
+                QMessageBox.critical(self, "Errore Fatale", f"Crash intercettato:\n{str(e)}")
+                print(f"ERRORE: {e}")
         else:
             QMessageBox.critical(self, "Errore", "Credenziali errate.")
             self.input_password.clear()
