@@ -88,6 +88,7 @@ class LoginView(QWidget):
         self.setStyleSheet("""
                     QWidget {
                         background-color: white;
+                        color: black;
                         font-family: Arial, sans-serif;
                     }
 
@@ -153,13 +154,21 @@ class LoginView(QWidget):
 
         if utente_loggato:
             QMessageBox.information(self, "Accesso Consentito", f"Benvenuto {utente_loggato.nome}!")
-            if isinstance(utente_loggato, Cliente):
-                self.main_window.mostra_area_cliente()
-            elif isinstance(utente_loggato, Dipendente):
-                self.main_window.mostra_area_dipendente()
-            else:
-                QMessageBox.critical(self, "Errore di Autenticazione", "Credenziali errate. Riprova.")
-                self.input_password.clear()
+
+            # BLOCCO TRY-EXCEPT PER EVITARE IL CRASH
+            try:
+                if isinstance(utente_loggato, Dipendente):
+                    self.main_window.mostra_area_dipendente()
+                else:
+                    # Poiché non hai ancora creato l'Area Cliente, blocchiamo temporaneamente questo redirect
+                    QMessageBox.information(self, "WIP", "L'area cliente non è ancora stata creata.")
+            except Exception as e:
+                # Se c'è un errore nel caricamento della pagina, lo stampiamo a schermo!
+                QMessageBox.critical(self, "Errore Fatale", f"Crash intercettato:\n{str(e)}")
+                print(f"ERRORE: {e}")
+        else:
+            QMessageBox.critical(self, "Errore", "Credenziali errate.")
+            self.input_password.clear()
 
     def vai_a_registrazione(self):
         if self.main_window:

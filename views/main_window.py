@@ -1,7 +1,8 @@
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget
 from views.login_view import LoginView
 from views.registrazione_view import RegistrazioneView
-
+from views.dipendente_dashboard_view import DipendenteDashboardView
+from views.ordini_dipendente_view import OrdiniDipendenteView
 
 class MainWindow(QMainWindow):
     def __init__(self, gestore_utenti, gestore_ordini, gestore_prodotti, gestore_piste):
@@ -28,10 +29,14 @@ class MainWindow(QMainWindow):
         # Creiamo le view passando il controller necessario e 'self' come main_window
         self.login_view = LoginView(self.gestore_utenti, main_window=self)
         self.registrazione_view = RegistrazioneView(self.gestore_utenti, main_window=self)
+        self.dipendente_dashboard_view = DipendenteDashboardView(self.gestore_utenti, self.gestore_ordini, self.gestore_piste, main_window=self)
+        self.ordini_dipendente_view = OrdiniDipendenteView(self.gestore_ordini, main_window=self)
 
         # Aggiungiamo le view al QStackedWidget
         self.stacked_widget.addWidget(self.login_view)  # Indice 0
         self.stacked_widget.addWidget(self.registrazione_view)  # Indice 1
+        self.stacked_widget.addWidget(self.dipendente_dashboard_view)
+        self.stacked_widget.addWidget(self.ordini_dipendente_view)
 
         # Impostiamo la schermata iniziale da mostrare all'avvio
         self.mostra_login()
@@ -49,5 +54,9 @@ class MainWindow(QMainWindow):
         pass
 
     def mostra_area_dipendente(self):
-        """TODO: Passa alla dashboard del dipendente."""
-        pass
+        self.dipendente_dashboard_view.aggiorna_vista()
+        self.stacked_widget.setCurrentWidget(self.dipendente_dashboard_view)
+
+    def mostra_gestione_ordini(self):
+        self.ordini_dipendente_view.aggiorna_vista()
+        self.stacked_widget.setCurrentWidget(self.ordini_dipendente_view)

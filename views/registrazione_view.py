@@ -83,6 +83,7 @@ class RegistrazioneView(QWidget):
         self.setStyleSheet("""
             QWidget {
                 background-color: white;
+                color: black;
                 font-family: Arial, sans-serif;
             }
             #RegBox {
