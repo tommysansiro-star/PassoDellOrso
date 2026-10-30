@@ -192,6 +192,7 @@ class DipendenteDashboardView(QWidget):
         self.btn_vedi_ordini.clicked.connect(self.vai_a_ordini)
         self.btn_piste.clicked.connect(self.vai_a_piste)
         self.btn_vedi_piste.clicked.connect(self.vai_a_piste)
+        self.btn_inventario.clicked.connect(self.vai_a_inventario)
 
     def aggiorna_vista(self):
         """Metodo da chiamare quando si accede alla dashboard per aggiornare il nome."""
@@ -219,3 +220,7 @@ class DipendenteDashboardView(QWidget):
     def vai_a_piste(self):
         if self.main_window:
             self.main_window.mostra_area_gestione_piste()
+
+    def vai_a_inventario(self):
+        if self.main_window:
+            self.main_window.mostra_gestione_inventario()

@@ -32,3 +32,7 @@ class Prodotto(ABC):
     @prezzo.setter
     def prezzo(self, valore: float) -> None:
         self._prezzo = valore
+
+    @nome.setter
+    def nome(self, valore: str) -> None:
+        self._nome = valore
