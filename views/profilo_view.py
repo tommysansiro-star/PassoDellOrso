@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel,
-                             QPushButton, QFrame)
+                             QPushButton, QFrame, QSizePolicy)
 from PyQt6.QtCore import Qt
 
 
@@ -27,9 +27,7 @@ class ProfiloView(QWidget):
         # Riquadro contenente i dati e i pagamenti
         self.info_box = QFrame()
         self.info_box.setObjectName("InfoBox")
-        # Impostiamo la dimensione minima direttamente sul widget anziché via CSS
-        self.info_box.setMinimumWidth(650)
-        self.info_box.setMinimumHeight(250)
+        self.info_box.setMinimumSize(700, 300)  # Dimensione fissa generosa per il box
 
         # Layout orizzontale
         self.info_layout = QHBoxLayout(self.info_box)
@@ -38,11 +36,12 @@ class ProfiloView(QWidget):
 
         # --- LATO SINISTRO (Info Utente) ---
         self.layout_sinistra = QVBoxLayout()
+        self.layout_sinistra.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.layout_sinistra.setSpacing(15)  # Spazio fisso e sicuro tra le scritte
 
         self.lbl_titolo_info = QLabel("I TUOI DATI")
         self.lbl_titolo_info.setObjectName("Sottotitolo")
         self.layout_sinistra.addWidget(self.lbl_titolo_info)
-        self.layout_sinistra.addSpacing(10)
 
         self.lbl_nome = QLabel("Nome: ")
         self.lbl_cognome = QLabel("Cognome: ")
@@ -51,28 +50,25 @@ class ProfiloView(QWidget):
 
         for lbl in [self.lbl_nome, self.lbl_cognome, self.lbl_email, self.lbl_telefono]:
             lbl.setStyleSheet("font-size: 16px; color: #333; background-color: transparent;")
+            # IL SEGRETO È QUI: Vietiamo al layout di schiacciare le scritte verticalmente
+            lbl.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+            lbl.setMinimumHeight(30)
             self.layout_sinistra.addWidget(lbl)
-            self.layout_sinistra.addSpacing(5)
-
-        # Spinge tutto verso l'alto senza schiacciare le label
-        self.layout_sinistra.addStretch()
 
         # --- LATO DESTRO (Metodi di Pagamento) ---
         self.layout_destra = QVBoxLayout()
+        self.layout_destra.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.layout_destra.setSpacing(15)
 
         self.lbl_titolo_pagamenti = QLabel("METODI DI PAGAMENTO")
         self.lbl_titolo_pagamenti.setObjectName("Sottotitolo")
         self.layout_destra.addWidget(self.lbl_titolo_pagamenti)
-        self.layout_destra.addSpacing(10)
 
         self.layout_lista_pagamenti = QVBoxLayout()
+        self.layout_lista_pagamenti.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.layout_lista_pagamenti.setSpacing(8)
         self.layout_destra.addLayout(self.layout_lista_pagamenti)
 
-        # Spinge tutto verso l'alto
-        self.layout_destra.addStretch()
-
-        # Aggiungiamo le due colonne senza forzare lo stretch
         self.info_layout.addLayout(self.layout_sinistra)
         self.info_layout.addLayout(self.layout_destra)
 
@@ -157,6 +153,8 @@ class ProfiloView(QWidget):
             if not metodi:
                 lbl_vuoto = QLabel("Nessun metodo registrato.")
                 lbl_vuoto.setStyleSheet("font-style: italic; color: #666; font-size: 15px;")
+                lbl_vuoto.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+                lbl_vuoto.setMinimumHeight(30)
                 self.layout_lista_pagamenti.addWidget(lbl_vuoto)
             else:
                 for metodo in metodi:
@@ -169,6 +167,8 @@ class ProfiloView(QWidget):
 
                     lbl_metodo = QLabel(f"• {nome_metodo}")
                     lbl_metodo.setStyleSheet("font-size: 15px; color: #333;")
+                    lbl_metodo.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+                    lbl_metodo.setMinimumHeight(30)
                     self.layout_lista_pagamenti.addWidget(lbl_metodo)
 
     def vai_a_ordini(self):

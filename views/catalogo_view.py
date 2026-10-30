@@ -52,7 +52,6 @@ class CatalogoView(QWidget):
         # ==========================================
         # AREA PRODOTTI (GRIGLIA)
         # ==========================================
-        # Aggiungiamo un'area di scorrimento nel caso i prodotti siano tanti
         self.scroll_area = QScrollArea()
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setStyleSheet("border: none; background-color: white;")
@@ -93,13 +92,11 @@ class CatalogoView(QWidget):
         # 1. Aggiorna il contatore del carrello in alto a destra
         if self.main_window and hasattr(self.main_window, 'gestore_utenti'):
             gestore_utenti = self.main_window.gestore_utenti
-            utente = getattr(gestore_utenti, 'utente_loggato', None)
-            if not utente and hasattr(gestore_utenti, 'get_utente_loggato'):
-                utente = gestore_utenti.get_utente_loggato()
+            utente = getattr(gestore_utenti, 'utente_corrente', None) # Corretto nome variabile standard
 
             if utente:
                 carrello = getattr(utente, 'prodotti_carrello', getattr(utente, '_prodotti_carrello', []))
-                tot_prodotti = sum(item.quantita for item in carrello) if carrello else 0
+                tot_prodotti = sum(getattr(item, 'quantita', 1) for item in carrello) if carrello else 0
                 self.btn_carrello.setText(f"Carrello ({tot_prodotti})")
 
         try:
@@ -130,7 +127,7 @@ class CatalogoView(QWidget):
 
             for p in prodotti:
                 nome = p.get('nome') if isinstance(p, dict) else getattr(p, 'nome', getattr(p, '_nome', 'Prodotto'))
-                prezzo = p.get('prezzo') if isinstance(p, dict) else getattr(p, 'prezzo', getattr(p, '_prezzo', '0.00'))
+                prezzo = p.get('prezzo') if isinstance(p, dict) else getattr(p, 'prezzo', getattr(p, '_prezzo', 0.0))
 
                 card = self.crea_card_prodotto(nome, prezzo, p)
                 self.grid_layout.addWidget(card, riga, colonna)
@@ -148,7 +145,7 @@ class CatalogoView(QWidget):
             print("=" * 50 + "\n")
 
     def crea_card_prodotto(self, nome, prezzo, prodotto_ref):
-        """Crea il widget visuale per un singolo prodotto con stili forzati."""
+        """Crea il widget visuale per un singolo prodotto."""
         card = QFrame()
         card.setFixedSize(220, 250)
         card.setStyleSheet("""
@@ -165,8 +162,7 @@ class CatalogoView(QWidget):
         # Immagine segnaposto
         lbl_img = QLabel("🏂")
         lbl_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        lbl_img.setStyleSheet(
-            "font-size: 50px; background-color: #add8e6; border-radius: 10px; padding: 20px; border: none;")
+        lbl_img.setStyleSheet("font-size: 50px; background-color: #add8e6; border-radius: 10px; padding: 20px; border: none;")
         layout.addWidget(lbl_img)
 
         # Nome
@@ -177,7 +173,9 @@ class CatalogoView(QWidget):
         layout.addWidget(lbl_nome)
 
         # Prezzo
-        lbl_prezzo = QLabel(f"{prezzo} €")
+        # Assicuriamoci che il prezzo sia formattato con 2 decimali se è un float
+        prezzo_formattato = f"{prezzo:.2f}" if isinstance(prezzo, (int, float)) else str(prezzo)
+        lbl_prezzo = QLabel(f"€ {prezzo_formattato}")
         lbl_prezzo.setAlignment(Qt.AlignmentFlag.AlignCenter)
         lbl_prezzo.setStyleSheet("font-size: 16px; color: #d9534f; font-weight: bold; border: none;")
         layout.addWidget(lbl_prezzo)
@@ -202,7 +200,7 @@ class CatalogoView(QWidget):
             }
         """)
 
-        # Gestione sicura del click se prodotto_ref è un dizionario (fallback) o un oggetto vero
+        # Gestione sicura del click
         if not isinstance(prodotto_ref, dict):
             btn_dettagli.clicked.connect(lambda checked, p=prodotto_ref: self.apri_dettaglio(p))
         else:
@@ -214,6 +212,7 @@ class CatalogoView(QWidget):
         return card
 
     def apri_dettaglio(self, prodotto):
+        """Invia il prodotto selezionato alla main window per aprirne il dettaglio."""
         if self.main_window and hasattr(self.main_window, 'mostra_dettaglio_prodotto'):
             self.main_window.mostra_dettaglio_prodotto(prodotto)
         else:
@@ -221,13 +220,8 @@ class CatalogoView(QWidget):
 
     def torna_indietro(self):
         if self.main_window:
-            # Tenta le varie combinazioni di nome che potresti aver usato nel tuo main_window
             if hasattr(self.main_window, 'mostra_dashboard_cliente'):
                 self.main_window.mostra_dashboard_cliente()
-            elif hasattr(self.main_window, 'mostra_dashboard'):
-                self.main_window.mostra_dashboard()
-            elif hasattr(self.main_window, 'mostra_home'):
-                self.main_window.mostra_home()
             else:
                 QMessageBox.warning(self, "Errore", "Metodo per tornare alla dashboard non trovato nel main.py")
 

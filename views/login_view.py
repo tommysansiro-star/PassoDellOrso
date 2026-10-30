@@ -62,11 +62,6 @@ class LoginView(QWidget):
         self.btn_accedi.setCursor(Qt.CursorShape.PointingHandCursor)
         self.box_layout.addWidget(self.btn_accedi, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        self.btn_recupero = QPushButton("Password dimenticata?")
-        self.btn_recupero.setObjectName("LinkButton")
-        self.btn_recupero.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.box_layout.addWidget(self.btn_recupero, alignment=Qt.AlignmentFlag.AlignCenter)
-
         linea2 = QFrame()
         linea2.setFrameShape(QFrame.Shape.HLine)
         linea2.setStyleSheet("color: #1a365d;")
@@ -141,7 +136,7 @@ class LoginView(QWidget):
     def connetti_segnali(self):
         self.btn_accedi.clicked.connect(self.esegui_login)
         self.btn_registrati.clicked.connect(self.vai_a_registrazione)
-        self.btn_recupero.clicked.connect(self.recupera_password)
+
 
     def esegui_login(self):
         email = self.input_email.text().strip()
@@ -150,15 +145,45 @@ class LoginView(QWidget):
         if not email or not password:
             QMessageBox.warning(self, "Attenzione", "Inserisci sia email che password.")
             return
-        utente_loggato = self.gestore_utenti.richiestaAccesso(email, password)
+
+        # Tentativo di autenticazione tramite il gestore utenti
+        try:
+            utente_loggato = self.gestore_utenti.richiestaAccesso(email, password)
+        except Exception as e:
+            QMessageBox.critical(self, "Errore", f"Errore durante il login:\n{str(e)}")
+            return
 
         if utente_loggato:
-            if isinstance(utente_loggato, Dipendente):
-                self.main_window.mostra_area_dipendente()
-            else:
-                self.main_window.mostra_dashboard_cliente()
+            # 1. Prima cambiamo pagina (così la dashboard si aggiorna subito)
+            if not self.main_window:
+                QMessageBox.critical(self, "Errore", "Finestra principale (main_window) non collegata alla vista di login!")
+                return
+
+            try:
+                from models.dipendente import Dipendente
+                is_dipendente = isinstance(utente_loggato, Dipendente)
+            except ImportError:
+                is_dipendente = False
+
+            try:
+                if is_dipendente and hasattr(self.main_window, 'mostra_area_dipendente'):
+                    self.main_window.mostra_area_dipendente()
+                elif hasattr(self.main_window, 'mostra_area_cliente'):
+                    self.main_window.mostra_area_cliente()
+                else:
+                    QMessageBox.warning(self, "Attenzione", "Metodo di navigazione non trovato nella finestra principale.")
+                    return
+            except Exception as e:
+                import traceback
+                traceback.print_exc()
+                QMessageBox.critical(self, "Errore Fatale", f"Crash intercettato nel cambio pagina:\n{str(e)}")
+                return
+
+            # 2. Poi mostriamo il popup di benvenuto (così non blocca il cambio pagina)
+            QMessageBox.information(self, "Accesso Consentito", f"Benvenuto {utente_loggato.nome}!")
+
         else:
-            QMessageBox.critical(self, "Errore", "Credenziali errate.")
+            QMessageBox.critical(self, "Errore", "Credenziali errate o utente non registrato.")
             self.input_password.clear()
 
     def vai_a_registrazione(self):

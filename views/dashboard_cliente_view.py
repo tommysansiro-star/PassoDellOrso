@@ -44,11 +44,10 @@ class DashboardClienteView(QWidget):
         self.left_layout.addSpacing(10)
 
         self.btn_prodotti = QPushButton("Prodotti")
-        self.btn_ordini = QPushButton("I miei ordini")
         self.btn_profilo = QPushButton("Profilo")
         self.btn_logout = QPushButton("Logout")
 
-        for btn in [self.btn_prodotti, self.btn_ordini, self.btn_profilo, self.btn_logout]:
+        for btn in [self.btn_prodotti, self.btn_profilo, self.btn_logout]:
             btn.setObjectName("MenuButton")
             btn.setCursor(Qt.CursorShape.PointingHandCursor)
             btn.setFixedSize(160, 42)
@@ -229,6 +228,25 @@ class DashboardClienteView(QWidget):
     def vai_a_carrello(self):
         if self.main_window and hasattr(self.main_window, 'mostra_carrello'):
             self.main_window.mostra_carrello()
+
+    def connetti_segnali(self):
+        self.btn_logout.clicked.connect(self.esegui_logout)
+        self.btn_prodotti.clicked.connect(self.vai_al_catalogo)
+        self.btn_carrello.clicked.connect(self.vai_al_carrello)
+        self.btn_profilo.clicked.connect(self.vai_al_profilo)
+
+    def vai_al_carrello(self):
+        if self.main_window and hasattr(self.main_window, 'mostra_carrello'):
+            self.main_window.mostra_carrello()
+
+    def vai_al_profilo(self):
+        if self.main_window and hasattr(self.main_window, 'mostra_profilo'):
+            self.main_window.mostra_profilo()
+
+    def vai_al_catalogo(self):
+                """Passa alla pagina del catalogo prodotti."""
+                if self.main_window and hasattr(self.main_window, 'mostra_prodotti'):
+                    self.main_window.mostra_prodotti()
 
     def esegui_logout(self):
         if hasattr(self.gestore_utenti, 'logout'):

@@ -4,15 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6d02c30-921b-4a4f-ada9-a23699daa781" name="Changes" comment="realizzazione view gestione piste e form nuovo indipendente">
-      <change afterPath="$PROJECT_DIR$/views/gestione_inventario_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/nuovo_prodotto_view.py" afterDir="false" />
+    <list default="true" id="d6d02c30-921b-4a4f-ada9-a23699daa781" name="Changes" comment="implementazione parziale main e view di login">
+      <change afterPath="$PROJECT_DIR$/views/aggiungi_pagamento_view.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/carrello_view.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/modifica_credenziali_view.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/ordini_view.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/prodotto_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/prodotto.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/prodotto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dipendente_dashboard_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/dipendente_dashboard_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/popola_prodotti.py" beforeDir="false" afterPath="$PROJECT_DIR$/popola_prodotti.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/popola_utenti.py" beforeDir="false" afterPath="$PROJECT_DIR$/popola_utenti.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/catalogo_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/catalogo_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard_cliente_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard_cliente_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/login_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/login_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/main_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/vista_dashboard_dipendente.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/profilo_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/profilo_view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,58 +57,58 @@
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
       <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0000001341561342" />
-      <entry key="S10" value="1.0005174037567972" />
-      <entry key="S30" value="1.1453115520399866" />
-      <entry key="S60" value="2.1659578987895234" />
-      <entry key="M2" value="6.847974814256373" />
-      <entry key="M5" value="20.738819577201653" />
-      <entry key="M10" value="33.94739131836594" />
-      <entry key="M15" value="42.18276675483643" />
-      <entry key="M30" value="61.28194705339248" />
-      <entry key="H1" value="114.98215416214191" />
-      <entry key="H2" value="275.364024663856" />
-      <entry key="H4" value="680.3673414315045" />
-      <entry key="D1" value="2485.5182146526513" />
-      <entry key="W1" value="3295.6167584050263" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0000003216884057" />
+      <entry key="S60" value="1.000814229364953" />
+      <entry key="M2" value="1.086924379584954" />
+      <entry key="M5" value="4.290332803960987" />
+      <entry key="M10" value="18.76334627147886" />
+      <entry key="M15" value="36.638089385602434" />
+      <entry key="M30" value="87.17932065575508" />
+      <entry key="H1" value="189.57560132223063" />
+      <entry key="H2" value="410.22519706737205" />
+      <entry key="H4" value="873.1391176891452" />
+      <entry key="D1" value="2445.230027591991" />
+      <entry key="W1" value="3044.0359439211297" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="2.306728221697343E-169" />
-      <entry key="S2" value="6.930256944719963E-43" />
-      <entry key="S5" value="1.3729052204343448E-17" />
-      <entry key="S10" value="3.917837453825486E-9" />
-      <entry key="S30" value="0.002596035312505886" />
-      <entry key="S60" value="0.10559744823764605" />
-      <entry key="M2" value="0.8004052476653967" />
-      <entry key="M5" value="3.0401706736097647" />
-      <entry key="M10" value="5.008939978392613" />
-      <entry key="M15" value="6.086388006697513" />
-      <entry key="M30" value="8.26829674483156" />
-      <entry key="H1" value="13.445068090647807" />
-      <entry key="H2" value="24.006516244758167" />
-      <entry key="H4" value="38.553707530504376" />
-      <entry key="D1" value="73.24567149156418" />
-      <entry key="W1" value="85.58814268600216" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="7.739968759525238E-130" />
+      <entry key="S5" value="3.3282939825616275E-52" />
+      <entry key="S10" value="2.6182654895031815E-26" />
+      <entry key="S30" value="5.626694158277727E-9" />
+      <entry key="S60" value="1.3898939904666573E-4" />
+      <entry key="M2" value="0.026746446544424127" />
+      <entry key="M5" value="0.9448084664382824" />
+      <entry key="M10" value="3.7390235733312567" />
+      <entry key="M15" value="6.175461083294164" />
+      <entry key="M30" value="10.867297489617801" />
+      <entry key="H1" value="15.97834142146695" />
+      <entry key="H2" value="21.748198661755456" />
+      <entry key="H4" value="29.129645781890964" />
+      <entry key="D1" value="48.6553444469766" />
+      <entry key="W1" value="55.64523975303213" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.7371346086455506" />
-      <entry key="MS500" value="0.9408261075137876" />
-      <entry key="S2" value="0.9848664428955506" />
-      <entry key="S5" value="0.9939190031273435" />
-      <entry key="S10" value="0.9974698228818372" />
-      <entry key="S30" value="1.1462344326218505" />
-      <entry key="S60" value="2.262146923765073" />
-      <entry key="M2" value="7.616515112088557" />
-      <entry key="M5" value="23.731536376569814" />
-      <entry key="M10" value="38.91661461838228" />
-      <entry key="M15" value="48.23636249954733" />
-      <entry key="M30" value="69.52656542539657" />
-      <entry key="H1" value="128.40517314349043" />
-      <entry key="H2" value="299.3466259604423" />
-      <entry key="H4" value="718.8969391463341" />
-      <entry key="D1" value="2558.753092212344" />
-      <entry key="W1" value="3381.202966525032" />
+      <entry key="MS100" value="0.5703818579342118" />
+      <entry key="MS500" value="0.893785162356787" />
+      <entry key="S2" value="0.9723179093026847" />
+      <entry key="S5" value="0.9888338254031045" />
+      <entry key="S10" value="0.9944012396427835" />
+      <entry key="S30" value="0.9981305783357992" />
+      <entry key="S60" value="1.000011051706713" />
+      <entry key="M2" value="1.1125766132483257" />
+      <entry key="M5" value="5.224652428529709" />
+      <entry key="M10" value="22.477035500849613" />
+      <entry key="M15" value="42.78153326258742" />
+      <entry key="M30" value="98.0114414301964" />
+      <entry key="H1" value="205.52113883908754" />
+      <entry key="H2" value="431.9441542591186" />
+      <entry key="H4" value="902.243440990454" />
+      <entry key="D1" value="2493.8759985681927" />
+      <entry key="W1" value="3099.67957862692" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -122,6 +128,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;Python.main (2).executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.popola_utenti.executor&quot;: &quot;Run&quot;,
     &quot;Python.prova.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_ordini.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_pista.executor&quot;: &quot;Run&quot;,
@@ -164,7 +171,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="~\PycharmProjects\PythonProject\.venv" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/views" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -190,7 +196,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="~\PycharmProjects\PythonProject\.venv" />
       <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -216,7 +221,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="~\PycharmProjects\PythonProject\.venv" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -225,6 +229,30 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="popola_utenti" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PassoDellOrso" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/popola_utenti.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -242,7 +270,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="~\PycharmProjects\PythonProject\.venv" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -268,7 +295,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="~\PycharmProjects\PythonProject\.venv" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -294,7 +320,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="~\PycharmProjects\PythonProject\.venv" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -320,7 +345,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="~\PycharmProjects\PythonProject\.venv" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -346,7 +370,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="~\PycharmProjects\PythonProject\.venv" />
       <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -363,6 +386,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.popola_utenti" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -385,8 +413,6 @@
       <workItem from="1793115431749" duration="5243000" />
       <workItem from="1793134643084" duration="415000" />
       <workItem from="1793202835956" duration="7542000" />
-      <workItem from="1793285433555" duration="193000" />
-      <workItem from="1793285728677" duration="3928000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunta dei models di tutte le entità, esclusi i gestori. Non sono state controllati tutti i metodi e le funzionalità">
       <option name="closed" value="true" />
@@ -436,15 +462,7 @@
       <option name="project" value="LOCAL" />
       <updated>1793122452808</updated>
     </task>
-    <task id="LOCAL-00007" summary="realizzazione interfacce login e registrazione">
-      <option name="closed" value="true" />
-      <created>1793285470595</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1793285470595</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,12 +474,11 @@
     <MESSAGE value="realizzazione unit tests funzionanti" />
     <MESSAGE value="correzioni varie" />
     <MESSAGE value="implementazione parziale main e view di login" />
-    <MESSAGE value="realizzazione interfacce login e registrazione" />
-    <option name="LAST_COMMIT_MESSAGE" value="realizzazione interfacce login e registrazione" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementazione parziale main e view di login" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PassoDellOrso$test_piste.coverage" NAME="test_piste Coverage Results" MODIFIED="1793066580012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/PassoDellOrso$main.coverage" NAME="main Coverage Results" MODIFIED="1793304978123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PassoDellOrso$main.coverage" NAME="main Coverage Results" MODIFIED="1793209940178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PassoDellOrso$test_ordini.coverage" NAME="test_ordini Coverage Results" MODIFIED="1793066572872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/PassoDellOrso$view.coverage" NAME="view Coverage Results" MODIFIED="1793118230178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/views" />
     <SUITE FILE_PATH="coverage/PassoDellOrso$test_prodotti.coverage" NAME="test_prodotti Coverage Results" MODIFIED="1793066567662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
